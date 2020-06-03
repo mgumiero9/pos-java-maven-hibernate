@@ -3,7 +3,7 @@
 
     <persistence-unit name="pos-java-maven-hibernate">
 
-        <class>model.Users</class>
+        <class>model.MGUser</class>
 
         <properties>
             <!-- Dados de conexão com o banco -->
