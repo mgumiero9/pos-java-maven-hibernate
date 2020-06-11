@@ -18,11 +18,11 @@ public class GenericDAO<E> {
 
     public E search(E entity) {
         Object id = HibernateUtil.getPrimaryKey(entity);
-        return searchById((Long) id, entity);
+        return searchById((Long) id, entity.getClass());
     }
 
-    public E searchById(Long id, E entity) {
-        E e = (E) entityManager.find(entity.getClass(), id);
+    public E searchById(Long id, Class genericClass) {
+        E e = (E) entityManager.find(genericClass, id);
         return e;
 
     }
