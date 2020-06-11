@@ -23,4 +23,15 @@ public class HibernateTest {
         objectGenericDAO.persist(user);
     }
 
+    @Test
+    public void searchTest() {
+        GenericDAO<Object> genericDAO = new GenericDAO<Object>();
+
+        MGUser user = new MGUser();
+        user.setId(1L);
+        Object o = genericDAO.search(user);
+
+        System.out.println(o);
+    }
+
 }

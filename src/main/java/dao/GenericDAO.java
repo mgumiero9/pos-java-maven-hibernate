@@ -5,15 +5,21 @@ import posjavamavenhibernate.HibernateUtil;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-public class GenericDAO<T> {
+public class GenericDAO<E> {
 
-    private EntityManager entityManager = HibernateUtil.getEntityManager();
+    private final EntityManager entityManager = HibernateUtil.getEntityManager();
 
-    public void persist(T entity) {
+    public void persist(E entity) {
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
         entityManager.persist(entity);
         transaction.commit();
+    }
+
+    public E search(E entity) {
+        Object id = HibernateUtil.getPrimaryKey(entity);
+        E e = (E) entityManager.find(entity.getClass(), id);
+        return e;
     }
 
 }
