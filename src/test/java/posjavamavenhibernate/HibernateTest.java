@@ -34,4 +34,13 @@ public class HibernateTest {
         System.out.println(o);
     }
 
+    @Test
+    public void searchByIdTest() {
+        GenericDAO<Object> genericDAO = new GenericDAO<Object>();
+
+        Object o = genericDAO.searchById(2L, new MGUser());
+
+        System.out.println(o);
+    }
+
 }
