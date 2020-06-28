@@ -4,6 +4,7 @@ import posjavamavenhibernate.HibernateUtil;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import java.util.List;
 
 public class GenericDAO<E> {
 
@@ -41,7 +42,16 @@ public class GenericDAO<E> {
     public E searchById(Long id, Class genericClass) {
         E e = (E) entityManager.find(genericClass, id);
         return e;
+    }
 
+    public List<E> listAll(Class<E> entityClass) {
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+        List<E> resultList = entityManager
+                .createQuery(String.format("FROM %s", entityClass.getSimpleName()))
+                .getResultList();
+        transaction.commit();
+        return resultList;
     }
 
 }

@@ -4,6 +4,8 @@ import dao.GenericDAO;
 import model.MGUser;
 import org.junit.Test;
 
+import java.util.List;
+
 public class HibernateTest {
 
     @Test
@@ -52,6 +54,13 @@ public class HibernateTest {
         MGUser user = genericDAO.searchById(4L, MGUser.class);
         genericDAO.delete(user);
         System.out.println("deleted user " + user.getName());
+    }
+
+    @Test
+    public void listAllTest() {
+        GenericDAO<MGUser> dao = new GenericDAO<MGUser>();
+        List<MGUser> mgUsers = dao.listAll(MGUser.class);
+        System.out.println(mgUsers);
     }
 
 }
