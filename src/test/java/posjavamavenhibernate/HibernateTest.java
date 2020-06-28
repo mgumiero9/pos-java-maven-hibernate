@@ -42,7 +42,8 @@ public class HibernateTest {
         GenericDAO<MGUser> genericDAO = new GenericDAO<MGUser>();
         MGUser user = genericDAO.searchById(2L, MGUser.class);
         user.setName("Mr. Ray Conniff");
-        genericDAO.updateMerge(user);
+        MGUser updatedUser = genericDAO.updateMerge(user);
+        System.out.println(updatedUser);
     }
 
 }
