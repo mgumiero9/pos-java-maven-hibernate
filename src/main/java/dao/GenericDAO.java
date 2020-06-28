@@ -24,6 +24,15 @@ public class GenericDAO<E> {
         return storedEntity;
     }
 
+    public void delete(E entity) {
+        Object id = HibernateUtil.getPrimaryKey(entity);
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+        String query = String.format("delete from %s where id = %s", entity.getClass().getSimpleName(), id);
+        entityManager.createNativeQuery(query).executeUpdate();
+        transaction.commit();
+    }
+
     public E search(E entity) {
         Object id = HibernateUtil.getPrimaryKey(entity);
         return searchById((Long) id, entity.getClass());

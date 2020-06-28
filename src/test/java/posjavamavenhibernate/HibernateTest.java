@@ -15,8 +15,8 @@ public class HibernateTest {
     public void persistTest() {
         GenericDAO<Object> objectGenericDAO = new GenericDAO<Object>();
         MGUser user = new MGUser();
-        user.setName("Ray Conniff");
-        user.setUsername("rconiff");
+        user.setName("Ray Conniff5");
+        user.setUsername("rconiff5");
         user.setPassword("BestConductorWithGod");
         objectGenericDAO.persist(user);
     }
@@ -44,6 +44,14 @@ public class HibernateTest {
         user.setName("Mr. Ray Conniff");
         MGUser updatedUser = genericDAO.updateMerge(user);
         System.out.println(updatedUser);
+    }
+
+    @Test
+    public void deleteTest() {
+        GenericDAO<MGUser> genericDAO = new GenericDAO<MGUser>();
+        MGUser user = genericDAO.searchById(4L, MGUser.class);
+        genericDAO.delete(user);
+        System.out.println("deleted user " + user.getName());
     }
 
 }
