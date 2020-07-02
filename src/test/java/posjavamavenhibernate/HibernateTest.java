@@ -63,4 +63,18 @@ public class HibernateTest {
         System.out.println(mgUsers);
     }
 
+    @Test
+    public void queryListTest() {
+        GenericDAO<MGUser> dao = new GenericDAO<MGUser>();
+        List<MGUser> resultList1 = dao.getEntityManager().createQuery("select t from MGUser t").getResultList();
+        for (MGUser user : resultList1) {
+            System.out.println(user);
+        }
+        /* Other query example, shorter... */
+        List<MGUser> resultList2 = dao.getEntityManager().createQuery(" from MGUser").getResultList();
+        for (MGUser user : resultList2) {
+            System.out.println(user);
+        }
+    }
+
 }
