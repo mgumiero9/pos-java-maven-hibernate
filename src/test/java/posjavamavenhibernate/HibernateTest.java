@@ -77,4 +77,16 @@ public class HibernateTest {
         }
     }
 
+    @Test
+    public void queryListTestMaxResult() {
+        GenericDAO<MGUser> dao = new GenericDAO<MGUser>();
+        List<MGUser> resultList1 = dao.getEntityManager()
+                .createQuery("select t from MGUser t")
+                .setMaxResults(2)
+                .getResultList();
+        for (MGUser user : resultList1) {
+            System.out.println(user);
+        }
+    }
+
 }
