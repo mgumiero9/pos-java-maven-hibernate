@@ -89,4 +89,16 @@ public class HibernateTest {
         }
     }
 
+    @Test
+    public void queryListParameterTest() {
+        GenericDAO<MGUser> dao = new GenericDAO<MGUser>();
+        List<MGUser> resultList1 = dao.getEntityManager()
+                .createQuery("select t from MGUser t where t.name = :name")
+                .setParameter("name", "Ray Conniff")
+                .getResultList();
+        for (MGUser user : resultList1) {
+            System.out.println(user);
+        }
+    }
+
 }
