@@ -93,8 +93,9 @@ public class HibernateTest {
     public void queryListParameterTest() {
         GenericDAO<MGUser> dao = new GenericDAO<MGUser>();
         List<MGUser> resultList1 = dao.getEntityManager()
-                .createQuery("select t from MGUser t where t.name = :name")
+                .createQuery("select t from MGUser t where t.name = :name or t.password = :password")
                 .setParameter("name", "Ray Conniff")
+                .setParameter("password", "BestConductorWithGod")
                 .getResultList();
         for (MGUser user : resultList1) {
             System.out.println(user);
