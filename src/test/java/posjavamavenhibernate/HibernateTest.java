@@ -115,4 +115,13 @@ public class HibernateTest {
         System.out.println(String.format("avg: %s", idAvg));
     }
 
+    @Test
+    public void getAllIds() {
+        GenericDAO<MGUser> dao = new GenericDAO<MGUser>();
+        List<Long> resultList = (List<Long>) dao.getEntityManager()
+                .createNamedQuery("MGUser.getAllIds")
+                .getResultList();
+        resultList.forEach(id -> System.out.println(String.format("id: %s", id)));
+    }
+
 }

@@ -1,11 +1,11 @@
 package model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "MGUser.getAllIds", query = "select id from MGUser")
+})
 public class MGUser {
 
     @Id
