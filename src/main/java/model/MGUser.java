@@ -1,8 +1,10 @@
 package model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Table(name = "mguser", schema = "public")
 @NamedQueries({
         @NamedQuery(name = "MGUser.getAllIds", query = "select id from MGUser")
 })
@@ -11,10 +13,12 @@ public class MGUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String name;
     private String username;
     private String password;
+
+    @OneToMany(mappedBy = "mgUser")
+    private List<UserPhone> userPhones;
 
     public Long getId() {
         return id;
@@ -46,6 +50,14 @@ public class MGUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<UserPhone> getUserPhones() {
+        return userPhones;
+    }
+
+    public void setUserPhones(List<UserPhone> userPhones) {
+        this.userPhones = userPhones;
     }
 
     @Override
