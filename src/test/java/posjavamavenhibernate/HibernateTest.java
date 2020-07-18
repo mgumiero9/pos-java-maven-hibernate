@@ -102,4 +102,17 @@ public class HibernateTest {
         }
     }
 
+    @Test
+    public void getStatistics() {
+        GenericDAO<MGUser> dao = new GenericDAO<MGUser>();
+        Object idSum = dao.getEntityManager()
+                .createQuery("select sum(u.id) from MGUser u")
+                .getSingleResult();
+        Object idAvg = dao.getEntityManager()
+                .createQuery("select avg(u.id) from MGUser u")
+                .getSingleResult();
+        System.out.println(String.format("sum: %s", idSum));
+        System.out.println(String.format("avg: %s", idAvg));
+    }
+
 }
