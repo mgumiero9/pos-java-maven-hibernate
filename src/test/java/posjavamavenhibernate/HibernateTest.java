@@ -2,8 +2,10 @@ package posjavamavenhibernate;
 
 import dao.GenericDAO;
 import model.MGUser;
+import model.UserPhone;
 import org.junit.Test;
 
+import javax.persistence.Table;
 import java.util.List;
 
 public class HibernateTest {
@@ -122,6 +124,17 @@ public class HibernateTest {
                 .createNamedQuery("MGUser.getAllIds")
                 .getResultList();
         resultList.forEach(id -> System.out.println(String.format("id: %s", id)));
+    }
+
+    @Test
+    public void savePhone() {
+        GenericDAO<Object> genericDAO = new GenericDAO<>();
+        MGUser mgUser = (MGUser) genericDAO.searchById(2L, MGUser.class);
+        UserPhone phone = new UserPhone();
+        phone.setType("Celular");
+        phone.setNumber("22-22222-2222");
+        phone.setMgUser(mgUser);
+        genericDAO.persist(phone);
     }
 
 }
