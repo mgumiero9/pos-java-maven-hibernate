@@ -129,12 +129,19 @@ public class HibernateTest {
     @Test
     public void savePhone() {
         GenericDAO<Object> genericDAO = new GenericDAO<>();
-        MGUser mgUser = (MGUser) genericDAO.searchById(2L, MGUser.class);
+        MGUser mgUser = (MGUser) genericDAO.searchById(1L, MGUser.class);
         UserPhone phone = new UserPhone();
-        phone.setType("Celular");
-        phone.setNumber("22-22222-2222");
+        phone.setType("Casa");
+        phone.setNumber("11-45647-5655");
         phone.setMgUser(mgUser);
         genericDAO.persist(phone);
+    }
+
+    @Test
+    public void listUserPhoneByUserId() {
+        GenericDAO<Object> genericDAO = new GenericDAO<>();
+        MGUser mgUser = (MGUser) genericDAO.searchById(2L, MGUser.class);
+        mgUser.getUserPhones().forEach(System.out::println);
     }
 
 }

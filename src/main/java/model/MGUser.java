@@ -17,7 +17,7 @@ public class MGUser {
     private String username;
     private String password;
 
-    @OneToMany(mappedBy = "mgUser")
+    @OneToMany(mappedBy = "mgUser", fetch = FetchType.EAGER)
     private List<UserPhone> userPhones;
 
     public Long getId() {

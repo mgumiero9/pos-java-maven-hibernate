@@ -50,4 +50,14 @@ public class UserPhone {
     public void setMgUser(MGUser mgUser) {
         this.mgUser = mgUser;
     }
+
+    @Override
+    public String toString() {
+        return "UserPhone{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", number='" + number + '\'' +
+                ", mgUser=" + mgUser +
+                '}';
+    }
 }
